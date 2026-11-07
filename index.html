@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>свиданка для юленьки</title>
+<meta name="theme-color" content="#ece2ff">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Marck+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- фон: облачка, лепестки, цветочки по углам -->
+<div class="sky" aria-hidden="true">
+  <i class="cloud" style="--w:170px;--y:7vh;--t:70s;--d:-12s"></i>
+  <i class="cloud" style="--w:120px;--y:24vh;--t:95s;--d:-60s"></i>
+  <i class="cloud" style="--w:210px;--y:48vh;--t:110s;--d:-30s"></i>
+  <i class="cloud" style="--w:140px;--y:70vh;--t:85s;--d:-75s"></i>
+  <i class="cloud" style="--w:190px;--y:86vh;--t:100s;--d:-5s"></i>
+</div>
+<div class="petals" id="petals" aria-hidden="true"></div>
+<div class="deco tl" data-flower="lilac" aria-hidden="true"></div>
+<div class="deco tr" data-flower="alstro" aria-hidden="true"></div>
+<div class="deco bl" data-flower="lilac" aria-hidden="true"></div>
+<div class="deco br" data-flower="alstro" aria-hidden="true"></div>
+
+<!-- облачная шторка для переходов -->
+<div class="wipe" id="wipe" aria-hidden="true"><div class="wipe-inner"></div></div>
+
+<main id="app">
+
+  <!-- 1. открытка -->
+  <section class="screen active" id="s-card">
+    <div class="card" id="card">
+
+      <div class="inside">
+        <h1>юленька, пойдём на свидание?</h1>
+
+        <div class="polas">
+          <figure class="polaroid mini"><img src="images/couple-lift2.jpg" alt="" style="object-position:50% 35%"></figure>
+          <figure class="polaroid mini"><img src="images/couple-kiss.jpg" alt="" style="object-position:55% 50%"></figure>
+          <figure class="polaroid mini"><img src="images/yulia-leaf.jpg" alt="" style="object-position:50% 20%"></figure>
+        </div>
+
+        <!-- ================= ТВОЙ ТЕКСТ ТУТ (замени между <p> и </p>) ================= -->
+        <p class="msg" id="msg">
+          приве, я начинающий вайбкодер и очень хотел сделать для тебя что-то милое. вот, сделал. хочу чтобы ты сама собрала своё идеальное свидание, но не без сюрпризов кнш)). выбери, что тебе нравится, а я всё организую.
+        </p>
+        <!-- ============================================================================ -->
+
+        <div class="cats">
+          <img src="images/cat-sleepy.jpg" alt="" style="object-position:50% 40%">
+          <span>сёма и вася тоже за свидание</span>
+          <img src="images/cat-apple.jpg" alt="" style="object-position:50% 45%">
+        </div>
+
+        <button class="btn big" id="start" type="button">собрать свиданку</button>
+        <p class="sign">твой кирюша</p>
+      </div>
+
+      <button class="cover" id="cover" type="button" aria-label="открыть открытку">
+        <span class="cv-flower a" data-flower="lilac"></span>
+        <span class="cv-flower b" data-flower="alstro"></span>
+        <span class="cv-small">для юленьки</span>
+        <span class="cv-title">у меня для тебя кое-что</span>
+        <span class="cv-seal">♥</span>
+        <span class="cv-hint">нажми на открытку</span>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- 2. вопросы -->
+  <section class="screen" id="s-quiz">
+    <div class="quiz">
+      <div class="progress" id="progress"></div>
+      <figure class="polaroid big" id="qphoto">
+        <span class="tape"></span>
+        <img id="qimg" src="" alt="">
+        <figcaption id="qcap"></figcaption>
+      </figure>
+      <h2 id="qtitle"></h2>
+      <div class="opts" id="opts"></div>
+      <div class="free" id="free" hidden>
+        <input id="finput" type="text" maxlength="80" autocomplete="off" placeholder="напиши, какие хочешь">
+        <div class="chips" id="chips"></div>
+        <button class="btn big" id="fnext" type="button">готово</button>
+      </div>
+      <button class="link" id="qback" type="button">← назад</button>
+    </div>
+  </section>
+
+  <!-- 3. маршрут выборов -->
+  <section class="screen" id="s-route">
+    <div class="route">
+      <h2>маршрут твоих выборов</h2>
+      <p class="sub">вот какое свидание ты собрала, юленька</p>
+      <ol class="stops" id="stops"></ol>
+      <button class="btn big" id="send" type="button">отправить кирюше</button>
+      <button class="link" id="redo" type="button">собрать заново</button>
+    </div>
+  </section>
+
+  <!-- 4. голубь улетел -->
+  <section class="screen" id="s-sent">
+    <div class="sent">
+      <h2>голубь уже летит к кирюше</h2>
+      <div class="picks" id="picks"></div>
+      <a class="btn" id="tg" hidden target="_blank" rel="noopener">помочь голубю долететь</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- конверт и голубь (общие для маршрута и финала) -->
+<div class="env-wrap" id="env" aria-hidden="true">
+  <div class="env-back"></div>
+  <div class="env-flap"></div>
+  <div class="env-front"></div>
+  <div class="env-seal">♥</div>
+</div>
+
+<div class="pigeon" id="pigeon" aria-hidden="true">
+  <svg viewBox="0 0 160 120" xmlns="http://www.w3.org/2000/svg">
+    <g class="bob">
+      <path class="wing b" d="M66 52 C44 22 70 2 98 8 C92 28 88 42 82 54 Z" fill="#aab6da"/>
+      <path d="M34 56 L2 70 L8 55 L1 44 L34 50 Z" fill="#9cabd3"/>
+      <ellipse cx="70" cy="60" rx="42" ry="22" fill="#c7d0e8"/>
+      <ellipse cx="80" cy="68" rx="30" ry="13" fill="#eef1fb"/>
+      <circle cx="116" cy="46" r="14" fill="#b4bfdc"/>
+      <ellipse cx="104" cy="55" rx="10" ry="7" fill="#c3b0ea"/>
+      <path d="M128 43 L143 48 L128 52 Z" fill="#f6b99a"/>
+      <circle cx="120" cy="43" r="2.6" fill="#3b2f55"/>
+      <circle cx="120.8" cy="42.2" r=".8" fill="#fff"/>
+      <path class="wing a" d="M62 54 C38 18 72 -2 104 6 C98 28 92 44 84 56 Z" fill="#9fadd3"/>
+      <g class="mini">
+        <line x1="72" y1="78" x2="78" y2="90" stroke="#a79ad0" stroke-width="1.4"/>
+        <line x1="86" y1="78" x2="82" y2="90" stroke="#a79ad0" stroke-width="1.4"/>
+        <rect x="62" y="90" width="34" height="24" rx="3" fill="#fff" stroke="#e8a9c8" stroke-width="1.6"/>
+        <path d="M62 91 L79 104 L96 91" fill="none" stroke="#e8a9c8" stroke-width="1.6"/>
+        <circle cx="79" cy="104" r="4" fill="#f4739f"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
